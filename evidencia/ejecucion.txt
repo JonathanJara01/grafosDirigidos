@@ -1,0 +1,375 @@
+
+════════════════════════════════════════════════════════════════════════════
+  CASO 1 · CONSTRUCCIÓN DEL GRAFO (CampusNet)
+════════════════════════════════════════════════════════════════════════════
+  Grafo dirigido vacío creado.
+
+── Usuarios (12) ───────────────────────────────────────────────────────────
+  ✔ Usuario agregado: U01 Ana Torres (profesor)
+  ✔ Usuario agregado: U02 Bruno Díaz (estudiante)
+  ✔ Usuario agregado: U03 Carla Gómez (estudiante)
+  ✔ Usuario agregado: U04 Diego Ruiz (egresado)
+  ✔ Usuario agregado: U05 Elena Vargas (profesor)
+  ✔ Usuario agregado: U06 Felipe Rojas (estudiante)
+  ✔ Usuario agregado: U07 Gabriela Soto (egresado)
+  ✔ Usuario agregado: U08 Hugo Marín (estudiante)
+  ✔ Usuario agregado: U09 Irene Castaño (profesor)
+  ✔ Usuario agregado: U10 Julián Prada (estudiante)
+  ✔ Usuario agregado: U11 Karen Ospina (egresado)
+  ✔ Usuario agregado: U12 Luis Mejía (estudiante)
+
+── Relaciones de seguimiento (25) ──────────────────────────────────────────
+  ✔ Relación agregada: U01 → U02
+  ✔ Relación agregada: U01 → U03
+  ✔ Relación agregada: U01 → U05
+  ✔ Relación agregada: U01 → U09
+  ✔ Relación agregada: U02 → U03
+  ✔ Relación agregada: U02 → U05
+  ✔ Relación agregada: U02 → U09
+  ✔ Relación agregada: U02 → U01
+  ✔ Relación agregada: U03 → U04
+  ✔ Relación agregada: U03 → U05
+  ✔ Relación agregada: U04 → U02
+  ✔ Relación agregada: U04 → U07
+  ✔ Relación agregada: U05 → U09
+  ✔ Relación agregada: U05 → U07
+  ✔ Relación agregada: U06 → U05
+  ✔ Relación agregada: U06 → U09
+  ✔ Relación agregada: U06 → U07
+  ✔ Relación agregada: U06 → U08
+  ✔ Relación agregada: U07 → U11
+  ✔ Relación agregada: U08 → U09
+  ✔ Relación agregada: U08 → U10
+  ✔ Relación agregada: U09 → U11
+  ✔ Relación agregada: U10 → U11
+  ✔ Relación agregada: U12 → U01
+  ✔ Relación agregada: U12 → U05
+
+── Control de duplicados y validaciones (deben ser rechazados) ─────────────
+  ✖ Usuario "U01" rechazado: el id ya existe (U01 Ana Torres (profesor))
+  ✖ Usuario "U50" rechazado: el rol debe ser estudiante, profesor o egresado
+  ✖ Relación U01 → U02 rechazada: la relación ya existe (no se permiten aristas duplicadas)
+  ✖ Relación U03 → U03 rechazada: un usuario no puede seguirse a sí mismo
+  ✖ Relación U03 → U99 rechazada: el usuario U99 no existe
+
+  Estructura del grafo  (A → B: A sigue a B | sal = sigue a, ent = seguidores)
+  U01 Ana Torres (profesor)  [sal 4 | ent 2]
+      → U02, U03, U05, U09
+  U02 Bruno Díaz (estudiante)  [sal 4 | ent 2]
+      → U03, U05, U09, U01
+  U03 Carla Gómez (estudiante)  [sal 2 | ent 2]
+      → U04, U05
+  U04 Diego Ruiz (egresado)  [sal 2 | ent 1]
+      → U02, U07
+  U05 Elena Vargas (profesor)  [sal 2 | ent 5]
+      → U09, U07
+  U06 Felipe Rojas (estudiante)  [sal 4 | ent 0]
+      → U05, U09, U07, U08
+  U07 Gabriela Soto (egresado)  [sal 1 | ent 3]
+      → U11
+  U08 Hugo Marín (estudiante)  [sal 2 | ent 1]
+      → U09, U10
+  U09 Irene Castaño (profesor)  [sal 1 | ent 5]
+      → U11
+  U10 Julián Prada (estudiante)  [sal 1 | ent 1]
+      → U11
+  U11 Karen Ospina (egresado)  [sal 0 | ent 3]
+      → (no sigue a nadie)
+  U12 Luis Mejía (estudiante)  [sal 2 | ent 0]
+      → U01, U05
+
+── Tamaño del grafo ────────────────────────────────────────────────────────
+  Vértices (usuarios)               : 12
+  Aristas (relaciones)              : 25
+
+════════════════════════════════════════════════════════════════════════════
+  CASO 2 · RECORRIDOS
+════════════════════════════════════════════════════════════════════════════
+
+── BFS desde 3 usuarios distintos ──────────────────────────────────────────
+  BFS desde U01
+    Orden de visita : U01 → U02 → U03 → U05 → U09 → U04 → U07 → U11
+    Distancia 0     : U01
+    Distancia 1     : U02, U03, U05, U09
+    Distancia 2     : U04, U07, U11
+    Vértices alcanzados: 8 (incluye el origen; 7 además de U01)
+
+  BFS desde U06
+    Orden de visita : U06 → U05 → U09 → U07 → U08 → U11 → U10
+    Distancia 0     : U06
+    Distancia 1     : U05, U09, U07, U08
+    Distancia 2     : U11, U10
+    Vértices alcanzados: 7 (incluye el origen; 6 además de U06)
+
+  BFS desde U10
+    Orden de visita : U10 → U11
+    Distancia 0     : U10
+    Distancia 1     : U11
+    Vértices alcanzados: 2 (incluye el origen; 1 además de U10)
+
+
+── DFS completo ────────────────────────────────────────────────────────────
+  Orden de descubrimiento: U01 → U02 → U03 → U04 → U07 → U11 → U05 → U09 → U06 → U08 → U10 → U12
+  Tiempos (descubrimiento/finalización):
+    U01 1/16 | U02 2/15 | U03 3/14 | U04 4/9 | U07 5/8 | U11 6/7 | U05 10/13 | U09 11/12 | U06 17/22 | U08 18/21 | U10 19/20 | U12 23/24
+  Árboles del bosque DFS: 3 (raíces: U01, U06, U12)
+  Ciclos dirigidos detectados por aristas de retroceso: 2
+    1. U02 → U03 → U04 → U02
+    2. U01 → U02 → U01
+
+════════════════════════════════════════════════════════════════════════════
+  CASO 3 · CONSULTAS SOCIALES
+════════════════════════════════════════════════════════════════════════════
+
+── Usuarios sin seguidores (grado de entrada 0) ────────────────────────────
+  Usuarios sin seguidores: 2
+    • U06 Felipe Rojas (estudiante)
+    • U12 Luis Mejía (estudiante)
+
+── Usuarios influyentes (mayor grado de entrada) ───────────────────────────
+  Más seguidos — 5 seguidores:
+    • U05 Elena Vargas (profesor)
+    • U09 Irene Castaño (profesor)
+
+── Usuarios más activos (mayor grado de salida) ────────────────────────────
+  Siguen a más personas — 4 seguidos:
+    • U01 Ana Torres (profesor)
+    • U02 Bruno Díaz (estudiante)
+    • U06 Felipe Rojas (estudiante)
+
+── Alcanzabilidad (BFS) ────────────────────────────────────────────────────
+  ✔ U12 SÍ puede llegar a U11 (3 saltos): U12 → U01 → U09 → U11
+  ✖ U11 NO puede llegar a U01
+  ✔ U04 SÍ puede llegar a U03 (2 saltos): U04 → U02 → U03
+  ✖ U01 → U99: alguno de los usuarios no existe
+
+════════════════════════════════════════════════════════════════════════════
+  CASO 4 · OPERACIONES CRUD
+════════════════════════════════════════════════════════════════════════════
+
+── Agregar usuario: U13 Marta León (estudiante) ────────────────────────────
+  ✔ Usuario agregado: U13 Marta León (estudiante)
+
+  Lista de adyacencia  (A → B: A sigue a B | sal = sigue a, ent = seguidores)
+  U01 Ana Torres (profesor)  [sal 4 | ent 2]
+      → U02, U03, U05, U09
+  U02 Bruno Díaz (estudiante)  [sal 4 | ent 2]
+      → U03, U05, U09, U01
+  U03 Carla Gómez (estudiante)  [sal 2 | ent 2]
+      → U04, U05
+  U04 Diego Ruiz (egresado)  [sal 2 | ent 1]
+      → U02, U07
+  U05 Elena Vargas (profesor)  [sal 2 | ent 5]
+      → U09, U07
+  U06 Felipe Rojas (estudiante)  [sal 4 | ent 0]
+      → U05, U09, U07, U08
+  U07 Gabriela Soto (egresado)  [sal 1 | ent 3]
+      → U11
+  U08 Hugo Marín (estudiante)  [sal 2 | ent 1]
+      → U09, U10
+  U09 Irene Castaño (profesor)  [sal 1 | ent 5]
+      → U11
+  U10 Julián Prada (estudiante)  [sal 1 | ent 1]
+      → U11
+  U11 Karen Ospina (egresado)  [sal 0 | ent 3]
+      → (no sigue a nadie)
+  U12 Luis Mejía (estudiante)  [sal 2 | ent 0]
+      → U01, U05
+  U13 Marta León (estudiante)  [sal 0 | ent 0]
+      → (no sigue a nadie)
+
+── Agregar relaciones: U13 → U01 y U13 → U12 ───────────────────────────────
+  ✔ Relación agregada: U13 → U01
+  ✔ Relación agregada: U13 → U12
+
+  Lista de adyacencia  (A → B: A sigue a B | sal = sigue a, ent = seguidores)
+  U01 Ana Torres (profesor)  [sal 4 | ent 3]
+      → U02, U03, U05, U09
+  U02 Bruno Díaz (estudiante)  [sal 4 | ent 2]
+      → U03, U05, U09, U01
+  U03 Carla Gómez (estudiante)  [sal 2 | ent 2]
+      → U04, U05
+  U04 Diego Ruiz (egresado)  [sal 2 | ent 1]
+      → U02, U07
+  U05 Elena Vargas (profesor)  [sal 2 | ent 5]
+      → U09, U07
+  U06 Felipe Rojas (estudiante)  [sal 4 | ent 0]
+      → U05, U09, U07, U08
+  U07 Gabriela Soto (egresado)  [sal 1 | ent 3]
+      → U11
+  U08 Hugo Marín (estudiante)  [sal 2 | ent 1]
+      → U09, U10
+  U09 Irene Castaño (profesor)  [sal 1 | ent 5]
+      → U11
+  U10 Julián Prada (estudiante)  [sal 1 | ent 1]
+      → U11
+  U11 Karen Ospina (egresado)  [sal 0 | ent 3]
+      → (no sigue a nadie)
+  U12 Luis Mejía (estudiante)  [sal 2 | ent 1]
+      → U01, U05
+  U13 Marta León (estudiante)  [sal 2 | ent 0]
+      → U01, U12
+
+── Eliminar relación: U02 → U01 ────────────────────────────────────────────
+  ✔ Relación eliminada: U02 → U01
+  ✖ No se eliminó U02 → U01: la relación no existe
+
+  Lista de adyacencia  (A → B: A sigue a B | sal = sigue a, ent = seguidores)
+  U01 Ana Torres (profesor)  [sal 4 | ent 2]
+      → U02, U03, U05, U09
+  U02 Bruno Díaz (estudiante)  [sal 3 | ent 2]
+      → U03, U05, U09
+  U03 Carla Gómez (estudiante)  [sal 2 | ent 2]
+      → U04, U05
+  U04 Diego Ruiz (egresado)  [sal 2 | ent 1]
+      → U02, U07
+  U05 Elena Vargas (profesor)  [sal 2 | ent 5]
+      → U09, U07
+  U06 Felipe Rojas (estudiante)  [sal 4 | ent 0]
+      → U05, U09, U07, U08
+  U07 Gabriela Soto (egresado)  [sal 1 | ent 3]
+      → U11
+  U08 Hugo Marín (estudiante)  [sal 2 | ent 1]
+      → U09, U10
+  U09 Irene Castaño (profesor)  [sal 1 | ent 5]
+      → U11
+  U10 Julián Prada (estudiante)  [sal 1 | ent 1]
+      → U11
+  U11 Karen Ospina (egresado)  [sal 0 | ent 3]
+      → (no sigue a nadie)
+  U12 Luis Mejía (estudiante)  [sal 2 | ent 1]
+      → U01, U05
+  U13 Marta León (estudiante)  [sal 2 | ent 0]
+      → U01, U12
+
+── Actualizar usuario: U10 cambia de nombre y U12 cambia de rol ────────────
+  ✔ Usuario U10 actualizado:
+      nombre: "Julián Prada" → "Julián Prada Ríos"
+  ✔ Usuario U12 actualizado:
+      rol   : estudiante → egresado
+  ✖ No se actualizó "U12": el rol debe ser estudiante, profesor o egresado
+
+  Lista de adyacencia  (A → B: A sigue a B | sal = sigue a, ent = seguidores)
+  U01 Ana Torres (profesor)  [sal 4 | ent 2]
+      → U02, U03, U05, U09
+  U02 Bruno Díaz (estudiante)  [sal 3 | ent 2]
+      → U03, U05, U09
+  U03 Carla Gómez (estudiante)  [sal 2 | ent 2]
+      → U04, U05
+  U04 Diego Ruiz (egresado)  [sal 2 | ent 1]
+      → U02, U07
+  U05 Elena Vargas (profesor)  [sal 2 | ent 5]
+      → U09, U07
+  U06 Felipe Rojas (estudiante)  [sal 4 | ent 0]
+      → U05, U09, U07, U08
+  U07 Gabriela Soto (egresado)  [sal 1 | ent 3]
+      → U11
+  U08 Hugo Marín (estudiante)  [sal 2 | ent 1]
+      → U09, U10
+  U09 Irene Castaño (profesor)  [sal 1 | ent 5]
+      → U11
+  U10 Julián Prada Ríos (estudiante)  [sal 1 | ent 1]
+      → U11
+  U11 Karen Ospina (egresado)  [sal 0 | ent 3]
+      → (no sigue a nadie)
+  U12 Luis Mejía (egresado)  [sal 2 | ent 1]
+      → U01, U05
+  U13 Marta León (estudiante)  [sal 2 | ent 0]
+      → U01, U12
+
+── Eliminar usuario: U05 (elimina también sus relaciones) ──────────────────
+  ✔ Usuario eliminado: U05 Elena Vargas (profesor)
+    Relaciones eliminadas con él (7):
+      U05 → U09
+      U05 → U07
+      U01 → U05
+      U02 → U05
+      U03 → U05
+      U06 → U05
+      U12 → U05
+  ✖ No se eliminó "U05": el usuario no existe
+
+  Lista de adyacencia  (A → B: A sigue a B | sal = sigue a, ent = seguidores)
+  U01 Ana Torres (profesor)  [sal 3 | ent 2]
+      → U02, U03, U09
+  U02 Bruno Díaz (estudiante)  [sal 2 | ent 2]
+      → U03, U09
+  U03 Carla Gómez (estudiante)  [sal 1 | ent 2]
+      → U04
+  U04 Diego Ruiz (egresado)  [sal 2 | ent 1]
+      → U02, U07
+  U06 Felipe Rojas (estudiante)  [sal 3 | ent 0]
+      → U09, U07, U08
+  U07 Gabriela Soto (egresado)  [sal 1 | ent 2]
+      → U11
+  U08 Hugo Marín (estudiante)  [sal 2 | ent 1]
+      → U09, U10
+  U09 Irene Castaño (profesor)  [sal 1 | ent 4]
+      → U11
+  U10 Julián Prada Ríos (estudiante)  [sal 1 | ent 1]
+      → U11
+  U11 Karen Ospina (egresado)  [sal 0 | ent 3]
+      → (no sigue a nadie)
+  U12 Luis Mejía (egresado)  [sal 1 | ent 1]
+      → U01
+  U13 Marta León (estudiante)  [sal 2 | ent 0]
+      → U01, U12
+
+════════════════════════════════════════════════════════════════════════════
+  CASO 5 · ANÁLISIS FINAL (grafo tras las operaciones CRUD)
+════════════════════════════════════════════════════════════════════════════
+
+  Estructura final  (A → B: A sigue a B | sal = sigue a, ent = seguidores)
+  U01 Ana Torres (profesor)  [sal 3 | ent 2]
+      → U02, U03, U09
+  U02 Bruno Díaz (estudiante)  [sal 2 | ent 2]
+      → U03, U09
+  U03 Carla Gómez (estudiante)  [sal 1 | ent 2]
+      → U04
+  U04 Diego Ruiz (egresado)  [sal 2 | ent 1]
+      → U02, U07
+  U06 Felipe Rojas (estudiante)  [sal 3 | ent 0]
+      → U09, U07, U08
+  U07 Gabriela Soto (egresado)  [sal 1 | ent 2]
+      → U11
+  U08 Hugo Marín (estudiante)  [sal 2 | ent 1]
+      → U09, U10
+  U09 Irene Castaño (profesor)  [sal 1 | ent 4]
+      → U11
+  U10 Julián Prada Ríos (estudiante)  [sal 1 | ent 1]
+      → U11
+  U11 Karen Ospina (egresado)  [sal 0 | ent 3]
+      → (no sigue a nadie)
+  U12 Luis Mejía (egresado)  [sal 1 | ent 1]
+      → U01
+  U13 Marta León (estudiante)  [sal 2 | ent 0]
+      → U01, U12
+
+── Métricas ────────────────────────────────────────────────────────────────
+  Vértices (usuarios)               : 12
+  Aristas (relaciones)              : 19
+  Densidad  m / (n·(n−1))           : 0.144
+  Relaciones recíprocas (parejas)   : 0
+
+── Conectividad ────────────────────────────────────────────────────────────
+  Componentes fuertemente conexas: 10
+    • {U02, U03, U04}  (todos se alcanzan entre sí)
+    Usuarios que forman una componente por sí solos: 9
+  Ciclos dirigidos detectados por aristas de retroceso: 1
+    1. U02 → U03 → U04 → U02
+
+── Consultas sociales ──────────────────────────────────────────────────────
+
+── Usuarios sin seguidores (grado de entrada 0) ────────────────────────────
+  Usuarios sin seguidores: 2
+    • U06 Felipe Rojas (estudiante)
+    • U13 Marta León (estudiante)
+
+── Usuarios influyentes (mayor grado de entrada) ───────────────────────────
+  Más seguidos — 4 seguidores:
+    • U09 Irene Castaño (profesor)
+
+── Usuarios más activos (mayor grado de salida) ────────────────────────────
+  Siguen a más personas — 3 seguidos:
+    • U01 Ana Torres (profesor)
+    • U06 Felipe Rojas (estudiante)

@@ -1,0 +1,15 @@
+{
+  "name": "grafos-dirigidos-campusnet",
+  "version": "1.0.0",
+  "description": "Taller integrador Programación III: grafo dirigido de seguimiento entre usuarios (MVC) en TypeScript",
+  "main": "dist/main.js",
+  "scripts": {
+    "build": "tsc",
+    "start": "npm run build && node dist/main.js"
+  },
+  "license": "MIT",
+  "devDependencies": {
+    "@types/node": "^22.0.0",
+    "typescript": "^5.6.0"
+  }
+}
